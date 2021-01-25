@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SendEmailsRequest;
+use App\Jobs\EmailSender;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -14,9 +16,10 @@ class EmailController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function send(Request $request)
+    public function send(SendEmailsRequest $request)
     {
         try {
+            EmailSender::dispatch($request['emails']);
 
             return response()->json([
                 'message' => 'Emails queued successfully.'
