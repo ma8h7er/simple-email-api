@@ -17,7 +17,7 @@ class EmailController extends Controller
     public function send(Request $request)
     {
         try {
-            
+
             return response()->json([
                 'message' => 'Emails queued successfully.'
             ]);
